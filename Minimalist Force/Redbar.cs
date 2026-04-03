@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -7,11 +8,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace WindowsGame2
 {
-    internal class Arrow
+    internal class Redbar
     {
-        public static bool Visible;
-
         public Texture2D Texture;
+
+        public static int CurrentState = 0;
 
         private Vector2 _position;
 
@@ -21,19 +22,25 @@ namespace WindowsGame2
             set { _position = value; }
         }
 
-        public Arrow()
+        public Redbar()
         {
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            DrawAt(spriteBatch, Position);
+            DrawAt(spriteBatch, _position);
         }
 
         public void DrawAt(SpriteBatch spriteBatch, Vector2 position)
         {
-            if (Visible)
+            if (CurrentState == 1)
                 spriteBatch.Draw(Texture, position, Color.White);
+        }
+
+        public void DrawAt(SpriteBatch spriteBatch, Vector2 position, int width, int height)
+        {
+            if (CurrentState == 1)
+                spriteBatch.Draw(Texture, new Rectangle((int)position.X, (int)position.Y, width, height), Color.White);
         }
     }
 }

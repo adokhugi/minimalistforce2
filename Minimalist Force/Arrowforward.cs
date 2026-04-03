@@ -7,10 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace WindowsGame2
 {
-    internal class Arrow
+    internal class Arrowforward
     {
-        public static bool Visible;
-
         public Texture2D Texture;
 
         private Vector2 _position;
@@ -21,7 +19,15 @@ namespace WindowsGame2
             set { _position = value; }
         }
 
-        public Arrow()
+        private bool _visible;
+
+        public bool Visible
+        {
+            get { return _visible; }
+            set { _visible = value; }
+        }
+
+        public Arrowforward()
         {
         }
 
@@ -32,7 +38,7 @@ namespace WindowsGame2
 
         public void DrawAt(SpriteBatch spriteBatch, Vector2 position)
         {
-            if (Visible)
+            if (_visible)
                 spriteBatch.Draw(Texture, position, Color.White);
         }
     }
